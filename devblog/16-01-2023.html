@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" href="../favicon.png" />
+		<meta name="viewport" content="width=device-width" />
+		<meta http-equiv="content-security-policy" content="">
+		<link href="../_app/immutable/assets/_layout-8003c18b.css" rel="stylesheet">
+		<link rel="modulepreload" href="../_app/immutable/start-258e6214.js">
+		<link rel="modulepreload" href="../_app/immutable/chunks/index-bedcd23a.js">
+		<link rel="modulepreload" href="../_app/immutable/chunks/singletons-e0934410.js">
+		<link rel="modulepreload" href="../_app/immutable/chunks/preload-helper-41c905a7.js">
+		<link rel="modulepreload" href="../_app/immutable/components/pages/_layout.svelte-4f877a3e.js">
+		<link rel="modulepreload" href="../_app/immutable/modules/pages/_layout.js-9cbb603b.js">
+		<link rel="modulepreload" href="../_app/immutable/chunks/_layout-da46b06b.js">
+		<link rel="modulepreload" href="../_app/immutable/components/pages/devblog/_path_/_page.svelte-3ec0b9df.js">
+		<link rel="modulepreload" href="../_app/immutable/modules/pages/devblog/_path_/_page.js-2dafd557.js">
+		<link rel="modulepreload" href="../_app/immutable/chunks/_page-c2995e66.js"><!-- HEAD_svelte-1lc4dl3_START --><link rel="stylesheet" href="/pico.min.css"><style>nav {
+      margin-left: 10%;
+      margin-right: 10%;
+    }
+  </style><!-- HEAD_svelte-1lc4dl3_END -->
+	</head>
+	<body>
+		<div style="display: contents">
+
+
+
+
+<nav><ul><li><a href="/">Hem</a></li>
+    <li><a href="/devblog">Blog</a></li></ul></nav>
+
+<main class="container-fluid"><hr>
+
+  <main class="container">
+
+
+<article><h1>MIN FÖRSTA POST</h1>
+  <p>Published: 2023-01-16</p>
+  <p>Tja, idag har jag lagt till en “konfettiknapp” som ska i framtiden göra någon slags animation.</p>
+<pre class="language-undefined"><!-- HTML_TAG_START --><code class="language-undefined">if (upgrade.confetti) &#123;
+                clicks -= upgrade.cost;
+                upgrade.cost += 100
+
+              &#125;</code><!-- HTML_TAG_END --></pre>
+<p>Jag har även ändrat lite i huvudkoden till spelet och sett till att man inte når infinity av att spamma på worker och doubler knappen.</p>
+<pre class="language-undefined"><!-- HTML_TAG_START --><code class="language-undefined">&#123;upgrade.cost * worker_multiplier&#125; --&gt; &#123;upgrade.cost&#125;</code><!-- HTML_TAG_END --></pre>
+<p>Istället blev det utbytt till denna kod som dubblar priset på multiplier varje gång man köper den</p>
+<pre class="language-undefined"><!-- HTML_TAG_START --><code class="language-undefined">if (upgrade.multiplier) &#123;
+                multiplier = multiplier * upgrade.multiplier;
+                clicks -= upgrade.cost;
+
+--&gt;
+if (upgrade.multiplier) &#123;
+                multiplier = multiplier * upgrade.multiplier;
+                clicks -= upgrade.cost;
+              upgrade.cost = upgrade.cost * 2</code><!-- HTML_TAG_END --></pre>
+<p>Sedan ändrade jag doubler till en multipler med 1,5 som ökning istället för 2. Jag rundade då även av talen så endast heltal visades.</p>
+<pre class="language-undefined"><!-- HTML_TAG_START --><code class="language-undefined">&lt;span class=&quot;clicks&quot;&gt;&#123;clicks&#125;&lt;/span&gt;
+      &lt;span class=&quot;pointtext&quot;&gt;PPC: &#123;multiplier&#125;&lt;/span&gt;
+--&gt;
+&lt;span class=&quot;clicks&quot;&gt;&#123;Math.round(clicks)&#125;&lt;/span&gt;
+      &lt;span class=&quot;pointtext&quot;&gt;PPC: &#123;Math.round(multiplier)&#125;&lt;/span&gt;</code><!-- HTML_TAG_END --></pre>
+<p>Och absolut sista la jag till en siffra som visar hur många workers man har, då de kan bli väldigt många.</p>
+<pre class="language-undefined"><!-- HTML_TAG_START --><code class="language-undefined">&lt;span&gt;Workers &lt;/span&gt;
+--&gt;
+&lt;span&gt;Workers &#123;workers.length&#125;&lt;/span&gt;</code><!-- HTML_TAG_END --></pre>
+<p>Hejdå!</p></article></main></main>
+
+
+		<script type="module" data-sveltekit-hydrate="1goh3xf">
+			import { start } from "../_app/immutable/start-258e6214.js";
+
+			start({
+				env: {},
+				paths: {"base":"","assets":""},
+				target: document.querySelector('[data-sveltekit-hydrate="1goh3xf"]').parentNode,
+				version: "1674126520942",
+				hydrate: {
+					node_ids: [0, 4],
+					data: [null,null],
+					form: null
+				}
+			});
+		</script>
+	</div>
+	</body>
+</html>
