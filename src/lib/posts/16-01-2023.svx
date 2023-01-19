@@ -1,0 +1,47 @@
+---
+title: MIN FÖRSTA POST
+date: "2023-01-16"
+---
+
+<script>
+ let a = 0;
+</script>
+Tja, idag har jag lagt till en "konfettiknapp" som ska i framtiden göra någon slags animation.
+```
+if (upgrade.confetti) {
+                clicks -= upgrade.cost;
+                upgrade.cost += 100
+
+              }
+```
+Jag har även ändrat lite i huvudkoden till spelet och sett till att man inte når infinity av att spamma på worker och doubler knappen.
+```
+{upgrade.cost * worker_multiplier} --> {upgrade.cost}
+```
+Istället blev det utbytt till denna kod som dubblar priset på multiplier varje gång man köper den
+```
+if (upgrade.multiplier) {
+                multiplier = multiplier * upgrade.multiplier;
+                clicks -= upgrade.cost;
+
+-->
+if (upgrade.multiplier) {
+                multiplier = multiplier * upgrade.multiplier;
+                clicks -= upgrade.cost;
+              upgrade.cost = upgrade.cost * 2
+```
+Sedan ändrade jag doubler till en multipler med 1,5 som ökning istället för 2. Jag rundade då även av talen så endast heltal visades.
+```
+<span class="clicks">{clicks}</span>
+      <span class="pointtext">PPC: {multiplier}</span>
+-->
+<span class="clicks">{Math.round(clicks)}</span>
+      <span class="pointtext">PPC: {Math.round(multiplier)}</span>
+```
+Och absolut sista la jag till en siffra som visar hur många workers man har, då de kan bli väldigt många.
+```
+<span>Workers </span>
+-->
+<span>Workers {workers.length}</span>
+```
+Hejdå!

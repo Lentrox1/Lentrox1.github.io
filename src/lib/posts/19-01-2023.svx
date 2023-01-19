@@ -1,0 +1,32 @@
+---
+title: MIN TREDJE POST
+date: "2023-01-17"
+---
+
+<script>
+ let a = 0;
+</script>
+Tja, implementerade konfetti animeringen när konfettiknappen trycks.
+```
+  function sleep (time) {
+    return new Promise((resolve) => setTimeout(resolve, time));
+}
+{#each upgrades as upgrade}
+        <button style = "background-image:{upgrade.confetti > 1? upgrade.image:null}"
+        if (upgrade.confetti) {
+                clicks -= upgrade.cost;
+                upgrade.confetti += 1
+                upgrade.cost += 100
+                multiplier = multiplier * upgrade.multiplier;
+                sleep(1500).then(() => {
+                upgrade.confetti = 1
+                });
+
+              }
+```
+Sedan implementerade jag en cheat knapp så man snabbt få clicks för att köpa upgrades.
+```
+if (upgrade.cheats) {
+                clicks += 1000000
+              }
+```
